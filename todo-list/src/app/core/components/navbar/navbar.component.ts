@@ -6,7 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  products!: any[];
 
-  selectedProduct1!: any;
 }

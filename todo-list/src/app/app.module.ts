@@ -10,29 +10,35 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CoreModule } from './core/core.module';
 import { Effects } from './store/task.effects';
 import { reducers } from './store/app.state';
+import { AccordionModule } from 'primeng/accordion';
+import { ProtectedModule } from "./protected/protected.module";
+
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CoreModule,
-    StoreModule.forRoot(reducers, {
-      // metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-        strictStateSerializability: true,
-        strictActionSerializability: true,
-        strictActionWithinNgZone: true,
-        strictActionTypeUniqueness: true,
-      },
-    }),
-    EffectsModule.forRoot([Effects]),
-    StoreRouterConnectingModule.forRoot(),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        CoreModule,
+        ProtectedModule,
+        AccordionModule,
+        StoreModule.forRoot(reducers, {
+            // metaReducers,
+            runtimeChecks: {
+                strictStateImmutability: true,
+                strictActionImmutability: true,
+                strictStateSerializability: true,
+                strictActionSerializability: true,
+                strictActionWithinNgZone: true,
+                strictActionTypeUniqueness: true,
+            },
+        }),
+        EffectsModule.forRoot([Effects]),
+        StoreRouterConnectingModule.forRoot(),
+        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+        ProtectedModule
+    ]
 })
 export class AppModule {}

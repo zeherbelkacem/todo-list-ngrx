@@ -8,21 +8,36 @@ import {
   getTasksFailure,
   getTasksRequest,
   getTasksSuccess,
+  saveTaskFailure,
+  saveTaskRequest,
+  saveTaskSuccess,
 } from './task.action';
 
 @Injectable()
 export class Effects {
-  getTasksRequest_getTasksResponse = createEffect(() =>
+  saveTaskRequest_saveTaskResponse = createEffect(() =>
     this.actions$.pipe(
-      ofType(getTasksRequest),
-      switchMap((_) => {
-        return this.taskService.getAllTasks().pipe(
-          map((tasks) => getTasksSuccess({ tasks: tasks })),
-          catchError((failureResponse) => of(getTasksFailure(failureResponse)))
+      ofType(saveTaskRequest),
+      switchMap((action) => {
+        return this.taskService.saveTask(action.task).pipe(
+          map((task) => saveTaskSuccess({ task: task })),
+          catchError((failureResponse) => of(saveTaskFailure(failureResponse)))
         );
       })
     )
   );
+
+  getTasksRequest_getTasksResponse = createEffect(() =>
+  this.actions$.pipe(
+    ofType(getTasksRequest),
+    switchMap((_) => {
+      return this.taskService.getAllTasks().pipe(
+        map((tasks) => getTasksSuccess({ tasks: tasks })),
+        catchError((failureResponse) => of(getTasksFailure(failureResponse)))
+      );
+    })
+  )
+);
 
   constructor(
     private readonly actions$: Actions,

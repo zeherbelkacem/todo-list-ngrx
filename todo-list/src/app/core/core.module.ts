@@ -8,14 +8,13 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 
-import { CoreRoutingModule } from './core-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, PageNotFoundComponent],
   imports: [
     CommonModule,
-    CoreRoutingModule,
     FormsModule,
     TableModule,
     ToastModule,

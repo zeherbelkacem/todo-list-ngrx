@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ProtectedRoutingModule } from './protected-routing.module';
 import { TodosComponent } from './container/todos/todos.component';
 import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
+import { SaveTodoComponent } from './components/save-todo/save-todo.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    TodosComponent
-  ],
+  declarations: [TodosComponent, SaveTodoComponent],
   imports: [
     CommonModule,
-    ProtectedRoutingModule,
     AccordionModule,
     ButtonModule,
-    ToastModule
+    ToastModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [TodosComponent],
 })
-export class ProtectedModule { }
+export class ProtectedModule {}

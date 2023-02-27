@@ -1,8 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, ofType } from '@ngrx/effects';
 import { createEffect } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { Task } from '../model/task';
 import { TaskService } from '../service/task.service';
 import {
   getTasksFailure,
@@ -39,9 +42,22 @@ export class Effects {
   )
 );
 
+// redirect_saveTaskResponse_updateTaskResponse = createEffect(() =>{
+//   return this.actions$.pipe(
+//     ofType(saveTaskSuccess),
+//     tap(() => {
+//       this.router.navigate(['/']);
+//     })
+//   )
+// }
+
+// );
+
   constructor(
     private readonly actions$: Actions,
     private store: Store,
-    private taskService: TaskService
+    private http: HttpClient,
+    private taskService: TaskService,
+    private router: Router
   ) {}
 }

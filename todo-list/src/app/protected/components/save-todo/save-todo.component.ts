@@ -45,6 +45,8 @@ export class SaveTodoComponent {
   }
 
   addTodo(myTodoForm: FormGroup) {
+    console.log(myTodoForm.value);
+
     this.store.dispatch(
       saveTaskRequest({
         task: {
@@ -52,10 +54,11 @@ export class SaveTodoComponent {
           title: myTodoForm.value.title,
           relatedState: 'TODO',
           done: false,
-          description: myTodoForm.value.description,
+          description: myTodoForm.value.description
         },
       })
     );
+    this.router.navigate(['/']);
   }
 
   // get title() {

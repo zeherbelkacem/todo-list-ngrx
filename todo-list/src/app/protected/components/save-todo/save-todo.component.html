@@ -1,12 +1,70 @@
 <div class="container mt-4">
+  <h4>Save a new Task</h4>
   <div class="card text-center">
+    <div class="card-header d-flex justify-content-end">
+      <button
+        pButton
+        type="submit"
+        label="Save"
+        (click)="addTodo(myTodoForm)"
+        [disabled]="!myTodoForm.valid"
+        icon="pi pi-check"
+      ></button>
+      <button
+        pButton
+        label="Reset"
+        (click)="myTodoForm.reset()"
+        icon="pi pi-times"
+        styleClass="p-button-secondary"
+        [style]="{ 'margin-left': '.5em' }"
+      ></button>
+    </div>
+    <div class="card-body">
+      <div [formGroup]="myTodoForm">
+        <div class="form-group">
+          <!-- Id :  -->
+          <label class="control-label"></label>
+          <input type="hidden" class="form-control" formControlName="id" />
+        </div>
+        <div class="form-row d-flex justify-content-around">
+          <div class="form-group mb-3 col-md-5">
+            <label class="control-label">Title</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="title"
+              required="title"
+            />
+            <!-- <div
+              class="form-control-feedback text-danger"
+              *ngIf="title?.errors && (title?.dirty || title?.touched)"
+            >
+              <div class="mt-1" *ngIf="title?.errors?.['required']">
+                Title is required
+              </div>
+            </div> -->
+          </div>
+          <div class="form-group mb-3 col-md-5">
+            <label class="control-label">Description</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="description"
+              required="description"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="card text-center">
     <div class="card-header">
       <h2 class="card-title">Add new todo</h2>
     </div>
     <div class="card-body">
       <form [formGroup]="myTodoForm" (ngSubmit)="addTodo(myTodoForm)">
         <div class="form-group">
-          <!-- Id :  -->
           <label class="control-label"></label>
           <input type="hidden" class="form-control" formControlName="id" />
         </div>
@@ -18,14 +76,14 @@
             formControlName="title"
             required="title"
           />
-          <!-- <div
+           <div
             class="form-control-feedback text-danger"
             *ngIf="title?.errors && (title?.dirty || title?.touched)"
           >
             <div class="mt-1" *ngIf="title?.errors?.['required']">
               Title is required
             </div>
-          </div> -->
+          </div>
         </div>
         <div class="form-group mb-3">
           <label class="control-label">TODO description</label>
@@ -44,5 +102,5 @@
         </button>
       </form>
     </div>
-  </div>
+  </div> -->
 </div>
